@@ -16,20 +16,53 @@ Algorithm:
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
 
-
-
-
+int main() {
+    int n;
+    
+    printf("Enter a number (1-9): ");
+    scanf("%d", &n);
+    
+    switch(n) {
+        case 1:
+            printf("one\n");
+            break;
+        case 2:
+            printf("two\n");
+            break;
+        case 3:
+            printf("three\n");
+            break;
+        case 4:
+            printf("four\n");
+            break;
+        case 5:
+            printf("five\n");
+            break;
+        case 6:
+            printf("six\n");
+            break;
+        case 7:
+            printf("seven\n");
+            break;
+        case 8:
+            printf("eight\n");
+            break;
+        case 9:
+            printf("nine\n");
+            break;
+        default:
+            printf("Greater than 9\n");
+    }
+    
+    return 0;
+}
+```
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="582" height="141" alt="image" src="https://github.com/user-attachments/assets/b723dbd9-24c6-498b-9fb8-fb5d742e61eb" />
 
 Result:
 Thus, the program is verified successfully
@@ -47,19 +80,38 @@ Algorithm:
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
+#include <string.h>
 
+int main() {
+    char a[50];
+    int h = 0;
+    int len;
 
+    printf("Enter a string: ");
+    scanf("%s", a);
 
+    len = strlen(a);
 
+    while (h <= 3) {
+        int c = 0;
+        for (int i = 0; i < len; i++) {
+            if (a[i] == '0' + h) {
+                c++;
+            }
+        }
+        printf("%d ", c);
+        h++;
+    }
+    printf("\n");
+
+    return 0;
+}
+```
 Output:
 
-
-//paste your output here
-
-
-
-
+<img width="579" height="139" alt="image" src="https://github.com/user-attachments/assets/31fec0a7-052d-4389-840f-a6f6f0d97f8a" />
 
 
 Result:
@@ -84,20 +136,45 @@ Free the memory allocated for each string in s Free the memory allocated for s
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
 
+struct StringStruct{
+    char str[10];
+};
 
-
-
+int main(void){
+    int size;
+    scanf("%d", &size);
+    struct StringStruct inp[size];
+    for(int i = 0 ; i < size ; i++)
+        scanf("%s", inp[i].str);
+    if(size % 2 == 0){
+        for(int i = 0 ; i < size ; i++){
+            for(int j = 0 ; j < size ; j++){
+                if(i != j)
+                    printf("%s %s ", inp[i].str, inp[j].str);
+            }
+            printf("\n");
+        }
+    }
+    if(size % 2 != 0){
+        for(int i = 0 ; i < size ; i++){
+            for(int j = 0 ; j < size ; j++){
+                if(i != j){
+                    for(int k = 0 ; k < size ; k++)
+                        if(i != k && j != k)
+                            printf("%s %s %s\n", inp[i].str, inp[j].str, inp[k].str);
+                }
+            }
+        }
+    }
+    return 0;
+}
+```
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="596" height="454" alt="image" src="https://github.com/user-attachments/assets/99562229-49fb-41c5-a132-6e7891e9c760" />
 
 Result:
 Thus, the program is verified successfully
@@ -117,20 +194,33 @@ Algorithm:
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
 
-
-
-
+int main() {
+    int n;
+    
+    printf("Enter n: ");
+    scanf("%d", &n);
+    
+    int len = n * 2 - 1;
+    
+    for(int i = 0; i < len; i++) {
+        for(int j = 0; j < len; j++) {
+            int min = i < j ? i : j;
+            min = min < len - i ? min : len - i - 1;
+            min = min < len - j ? min : len - j - 1;
+            printf("%d ", n - min);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+```
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="653" height="594" alt="image" src="https://github.com/user-attachments/assets/7ecd534e-8576-4861-9cc5-8ae56027f96f" />
 
 Result:
 Thus, the program is verified successfully
@@ -156,20 +246,29 @@ o	Call the square() function and display the result.
 
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
 
+int square() {
+    int num;
+    
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    
+    return num * num;
+}
 
-
-
+int main() {
+    int result = square();
+    
+    printf("Square: %d\n", result);
+    
+    return 0;
+}
+```
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="612" height="132" alt="image" src="https://github.com/user-attachments/assets/4d09deab-6bb2-4130-b684-7d61cf5e889e" />
 
 Result:
 Thus, the program is verified successfully
