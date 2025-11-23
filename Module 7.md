@@ -16,12 +16,40 @@ Else
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
+#include <string.h>
 
+struct eligible {
+    int age;
+    char n[50];
+};
+
+int main() {
+    struct eligible e;
+    
+    printf("Enter name: ");
+    scanf("%s", e.n);
+    printf("Enter age: ");
+    scanf("%d", &e.age);
+    
+    if (e.age <= 6) {
+        printf("Vaccine Eligibility: No\n");
+    } else {
+        printf("Vaccine Eligibility: Yes\n");
+    }
+    
+    printf("Name: %s\n", e.n);
+    printf("Age: %d\n", e.age);
+    
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="621" height="242" alt="image" src="https://github.com/user-attachments/assets/260fc37f-f960-4d8b-b917-6d86bfd98944" />
+
 
 
 Result:
@@ -43,18 +71,36 @@ Algorithm:
 7.	Return 0
  
 Program:
+```py
+#include <stdio.h>
 
-//type your code here
+struct numbers {
+    int a;
+    int b;
+};
 
+int add(struct numbers n) {
+    return n.a + n.b;
+}
 
-
+int main() {
+    struct numbers n;
+    
+    printf("Enter value for a: ");
+    scanf("%d", &n.a);
+    printf("Enter value for b: ");
+    scanf("%d", &n.b);
+    
+    int result = add(n);
+    printf("Sum: %d\n", result);
+    
+    return 0;
+}
+```
 
 Output:
 
-
-//paste your output here
-
-
+<img width="624" height="181" alt="image" src="https://github.com/user-attachments/assets/95dc43f5-1263-419c-8c7f-bf861c245021" />
 
 
 Result:
@@ -86,25 +132,36 @@ Use scanf to input the file name into the name array.
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
+#include <stdlib.h>
 
-
-
-
+int main() {
+    FILE *p;
+    char name[100];
+    
+    printf("Enter file name: ");
+    scanf("%s", name);
+    
+    printf("File %s created successfully\n", name);
+    
+    p = fopen(name, "w");
+    if (p == NULL) {
+        printf("Error opening file\n");
+        exit(1);
+    }
+    
+    printf("File opened successfully\n");
+    
+    fclose(p);
+    printf("File closed\n");
+    
+    return 0;
+}
+```
 Output:
 
-
-//paste your output here
-
-
-
-
-
-
-
-
-
-
+<img width="648" height="211" alt="image" src="https://github.com/user-attachments/assets/d7dec6d5-a50d-429d-8275-b8651badfe0a" />
 
 Result:
 Thus, the program is verified successfully
@@ -133,20 +190,45 @@ Use scanf to input the file name into the name array and the number of strings i
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
+#include <stdlib.h>
 
-
-
-
+int main() {
+    FILE *p;
+    char name[100];
+    char text[200];
+    int num;
+    
+    printf("Enter file name: ");
+    scanf("%s", name);
+    printf("Enter number of strings: ");
+    scanf("%d", &num);
+    
+    p = fopen(name, "w");
+    if (p == NULL) {
+        printf("Error opening file\n");
+        exit(1);
+    }
+    
+    printf("File opened successfully\n");
+    
+    getchar();
+    for (int i = 0; i < num; i++) {
+        printf("Enter string %d: ", i + 1);
+        fgets(text, sizeof(text), stdin);
+        fputs(text, p);
+    }
+    
+    fclose(p);
+    printf("Data added successfully\n");
+    
+    return 0;
+}
+```
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="718" height="637" alt="image" src="https://github.com/user-attachments/assets/89c1c26c-1d65-44a1-b1f1-e2c71a19c0d3" />
 
 Result:
 Thus, the program is verified successfully
@@ -187,20 +269,48 @@ Algorithm:
 
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
+#include <stdlib.h>
 
+struct subject {
+    char name[50];
+    int marks;
+};
 
-
-
+int main() {
+    int n;
+    struct subject *s;
+    
+    printf("Enter number of subjects: ");
+    scanf("%d", &n);
+    
+    s = (struct subject *)malloc(n * sizeof(struct subject));
+    if (s == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
+    
+    for (int i = 0; i < n; i++) {
+        printf("Enter subject %d name: ", i + 1);
+        scanf("%s", s[i].name);
+        printf("Enter marks: ");
+        scanf("%d", &s[i].marks);
+    }
+    
+    printf("\nSubject Details:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Subject: %s, Marks: %d\n", s[i].name, s[i].marks);
+    }
+    
+    free(s);
+    
+    return 0;
+}
+```
 Output:
 
-
-//paste your output here
-
-
-
-
-
+<img width="679" height="494" alt="image" src="https://github.com/user-attachments/assets/51a0758e-e723-486b-a711-c65595cc8502" />
 
 Result:
 Thus, the program is verified successfully
