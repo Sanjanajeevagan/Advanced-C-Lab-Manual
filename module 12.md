@@ -15,11 +15,59 @@ Algorithm:
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *head = NULL;
+
+void display() {
+    struct node *p = head;
+    
+    if(p == NULL) {
+        printf("Stack is empty\n");
+        return;
+    }
+    
+    printf("Stack elements: ");
+    while(p != NULL) {
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    int n, val;
+    struct node *temp, *newnode;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    for(int i = 0; i < n; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &val);
+        
+        newnode = (struct node *)malloc(sizeof(struct node));
+        newnode->data = val;
+        newnode->next = head;
+        head = newnode;
+    }
+    
+    display();
+    
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="615" height="277" alt="image" src="https://github.com/user-attachments/assets/e7dbdc7a-eecc-4364-a462-766773c19afd" />
 
 
 Result:
@@ -29,22 +77,84 @@ Thus, the program to display stack elements using linked list is verified succes
 
 EXP.NO 27: C PROGRAM TO POP AN ELEMENT FROM THE GIVEN STACK USING 
 LINKED LIST.
-Aim:
+
+## Aim:
 To write a C program to pop an element from the given stack using liked list.
 
-Algorithm:
+## Algorithm:
 1.	Check for Empty Stack
 2.	If head is equal to NULL, Print "Stack is empty."
 3.	Else Proceed to the next step.
 4.	Set head to point to the next node in the stack.
  
-Program:
+## Program:
+```py
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *head = NULL;
+
+void pop() {
+    struct node *temp;
+    
+    if(head == NULL) {
+        printf("Stack is empty\n");
+        return;
+    }
+    
+    temp = head;
+    printf("Popped element: %d\n", temp->data);
+    head = head->next;
+    free(temp);
+}
+
+int main() {
+    int n, val;
+    struct node *newnode;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    for(int i = 0; i < n; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &val);
+        
+        newnode = (struct node *)malloc(sizeof(struct node));
+        newnode->data = val;
+        newnode->next = head;
+        head = newnode;
+    }
+    
+    printf("Before pop:\n");
+    struct node *p = head;
+    while(p != NULL) {
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    printf("\n");
+    
+    pop();
+    
+    printf("After pop:\n");
+    p = head;
+    while(p != NULL) {
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    printf("\n");
+    
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="598" height="407" alt="image" src="https://github.com/user-attachments/assets/fe5f8a3c-0623-4a12-97fa-2e8e796a3979" />
 
 
 
@@ -53,6 +163,7 @@ Thus, the program to pop an element from the given stack using liked list is ver
 
  
 EXP NO:28 C PROGRAM TO DISPLAY QUEUE ELEMENTS USING LINKED LIST.
+
 Aim:
 To write a C program to display queue elements using linked list.
 Algorithm:
@@ -63,12 +174,67 @@ Algorithm:
 5.	End the display function.
  
 Program:
+```py
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *front = NULL;
+struct node *rear = NULL;
+
+void display() {
+    struct node *temp = front;
+    
+    if(front == NULL) {
+        printf("Queue is empty\n");
+        return;
+    }
+    
+    printf("Queue elements: ");
+    while(temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    int n, val;
+    struct node *newnode;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    for(int i = 0; i < n; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &val);
+        
+        newnode = (struct node *)malloc(sizeof(struct node));
+        newnode->data = val;
+        newnode->next = NULL;
+        
+        if(front == NULL) {
+            front = rear = newnode;
+        } else {
+            rear->next = newnode;
+            rear = newnode;
+        }
+    }
+    
+    display();
+    
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="628" height="268" alt="image" src="https://github.com/user-attachments/assets/ca82af6c-95e7-439f-b583-1cc330131b4e" />
+
 
 Result:
 Thus, the program to display queue elements using linked list is verified successfully.
@@ -90,11 +256,63 @@ Algorithm:
  
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *front = NULL;
+struct node *rear = NULL;
+
+void enqueue(int val) {
+    struct node *p;
+    
+    p = (struct node *)malloc(sizeof(struct node));
+    p->data = val;
+    p->next = NULL;
+    
+    if(front == NULL) {
+        front = rear = p;
+    } else {
+        rear->next = p;
+        rear = p;
+    }
+    
+    printf("%d inserted to queue\n", val);
+}
+
+int main() {
+    int n, val;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    for(int i = 0; i < n; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &val);
+        enqueue(val);
+    }
+    
+    printf("Queue elements: ");
+    struct node *temp = front;
+    while(temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+    
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
+<img width="609" height="409" alt="image" src="https://github.com/user-attachments/assets/2dd0d5a0-ea51-4942-b369-0b8eec331938" />
+
 
 Result:
 Thus, the program to insert elements in queue using linked list is verified successfully.
@@ -117,13 +335,62 @@ o	If the queue is not empty, return the data stored in the front node of the lin
 
 Program:
 
-//type your code here
+```py
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *front = NULL;
+struct node *rear = NULL;
+
+int peek() {
+    if(front == NULL) {
+        printf("Queue is empty\n");
+        return -1;
+    }
+    
+    return front->data;
+}
+
+int main() {
+    int n, val;
+    struct node *newnode;
+    
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    
+    for(int i = 0; i < n; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &val);
+        
+        newnode = (struct node *)malloc(sizeof(struct node));
+        newnode->data = val;
+        newnode->next = NULL;
+        
+        if(front == NULL) {
+            front = rear = newnode;
+        } else {
+            rear->next = newnode;
+            rear = newnode;
+        }
+    }
+    
+    int front_val = peek();
+    if(front_val != -1) {
+        printf("Front element (peek): %d\n", front_val);
+    }
+    
+    return 0;
+}
+```
 
 Output:
 
-//paste your output here
-
-
+<img width="617" height="272" alt="image" src="https://github.com/user-attachments/assets/8818b684-bb0f-455f-a518-a0e757abc041" />
 
 Result:
 
